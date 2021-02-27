@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-mongo-express
+  labels:
+    name: dashboard-mongo-express
+spec:
+  # tls:
+  #   - secretName: dashboard-secret-tls
+  #     hosts:
+  #       - dashboard.com
+  rules:
+    - host: dashboard-mongo-express.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: mongo-express-service
+                port:
+                  number: 8081
+            path: /
+            pathType: Prefix
+           
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: dashboard-ingress
+#   labels:
+#       name: dashboard-ingress
+# spec:
+#   # tls:
+#   #   - secretName: dashboard-secret-tls
+#   #     hosts:
+#   #       - dashboard.com
+#   rules:
+#   - host: dashboard.com
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: mongo-express-service
+#             port:
+#               number: 8081
